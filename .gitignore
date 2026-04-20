@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Go
+bin/
+kanban-tui
+go.sum
+
+# Database and Config
+kanban.db
+config.json
