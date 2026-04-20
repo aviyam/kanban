@@ -1,13 +1,14 @@
-BINARY_NAME=kanban-tui
+BINARY_NAME=bin/kanban-tui
 
 build:
-	go build -o $(BINARY_NAME) .
+	mkdir -p bin
+	go build -o $(BINARY_NAME) ./src
 
 run: build
 	./$(BINARY_NAME)
 
 test:
-	go test -v ./...
+	go test -v ./src/...
 
 clean:
 	go clean

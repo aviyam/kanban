@@ -3,18 +3,21 @@ package main
 import (
 	"database/sql"
 	"log"
+	"os"
+	"path/filepath"
 	"time"
 
 	_ "modernc.org/sqlite"
 )
 
-const dbFile = "kanban.db"
-
 var db *sql.DB
 
 func InitDB() {
+	exe, _ := os.Executable()
+	dbPath := filepath.Join(filepath.Dir(exe), "kanban.db")
+
 	var err error
-	db, err = sql.Open("sqlite", dbFile)
+	db, err = sql.Open("sqlite", dbPath)
 	if err != nil {
 		log.Fatal(err)
 	}

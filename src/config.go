@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"os"
+	"path/filepath"
 )
 
 type Config struct {
@@ -51,11 +52,14 @@ func DefaultConfig() Config {
 }
 
 func LoadConfig() Config {
-	file, err := os.ReadFile("config.json")
+	exe, _ := os.Executable()
+	configPath := filepath.Join(filepath.Dir(exe), "config.json")
+
+	file, err := os.ReadFile(configPath)
 	if err != nil {
 		c := DefaultConfig()
 		data, _ := json.MarshalIndent(c, "", "  ")
-		_ = os.WriteFile("config.json", data, 0644)
+		_ = os.WriteFile(configPath, data, 0644)
 		return c
 	}
 	var c Config

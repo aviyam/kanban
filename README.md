@@ -29,7 +29,8 @@ A standalone Kanban board application for the terminal built with Go. This tool 
    Or manually:
    ```bash
    go mod tidy
-   go build -o kanban-tui .
+   mkdir -p bin
+   go build -o bin/kanban-tui ./src
    ```
 
 ## Usage
@@ -40,7 +41,7 @@ make run
 ```
 Or directly:
 ```bash
-./kanban-tui
+./bin/kanban-tui
 ```
 
 ### Default Keyboard Shortcuts
@@ -68,7 +69,7 @@ Or directly:
 
 ## Configuration
 
-On the first run, the application generates a `config.json` file in the root directory. You can modify this file to customize your experience.
+On the first run, the application generates a `config.json` file in the same directory as the executable. You can modify this file to customize your experience.
 
 ### Configuration Options
 
@@ -106,12 +107,12 @@ On the first run, the application generates a `config.json` file in the root dir
 ## Maintenance
 
 The project includes a Makefile for common tasks:
-- `make build`: Compile the binary.
+- `make build`: Compile the binary into the `bin/` directory.
 - `make run`: Build and run the application.
 - `make test`: Run unit tests.
-- `make clean`: Remove the binary and clean the cache.
+- `make clean`: Remove the `bin/` directory and clean the cache.
 - `make tidy`: Update go.mod and go.sum.
 
 ## Data Storage
 
-The application stores all tasks in a local SQLite database named `kanban.db`. This file is created automatically in the project directory upon the first launch.
+The application stores all tasks in a local SQLite database named `kanban.db`, created automatically in the same directory as the executable upon the first launch.
